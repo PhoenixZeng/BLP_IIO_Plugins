@@ -1,3 +1,10 @@
+#Build
+	<dependency>
+	    <groupId>com.github.PhoenixZeng</groupId>
+	    <artifactId>BLP_IIO_Plugins</artifactId>
+	    <version>18cfbd234c</version>
+	</dependency>
+
 # BLP IIO Plugins
 Java Image IO plugins for BLP texture files used in games like Warcraft III and World of Warcraft.
 
