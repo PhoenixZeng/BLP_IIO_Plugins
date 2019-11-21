@@ -96,17 +96,25 @@ public class IndexedMipmapProcessor extends MipmapProcessor {
 				final IndexColorModel iCM = (IndexColorModel) srcCM;
 				final int[] srcCMap = new int[iCM.getMapSize()];
 				iCM.getRGBs(srcCMap);
-
 				// color space conversion
 				final ColorModel srcCMapCM = ColorModel.getRGBdefault();
 				final ColorModel destCMapCM = BLPIndexColorModel.createPaletteColorModel(ColorSpace.getInstance(ColorSpace.CS_LINEAR_RGB));
 				final int[] destCMap = new int[srcCMap.length];
-				final int[] components = new int[srcCMapCM
-						.getNumColorComponents()];
-				for (int i = 0; i < srcCMap.length; i += 1) {
-					destCMap[i] = destCMapCM.getDataElement(
-							srcCMapCM.getComponents(srcCMap[i], components, 0),
-							0);
+				try{
+					final int[] components = new int[srcCMapCM
+							.getNumColorComponents()];
+					for (int i = 0; i < srcCMap.length; i += 1) {
+						destCMap[i] = destCMapCM.getDataElement(
+								srcCMapCM.getComponents(srcCMap[i], components, 0),
+								0);
+					}
+				}catch (ArrayIndexOutOfBoundsException e)
+				{
+					for (int i = 0; i < srcCMap.length; i += 1) {
+						destCMap[i] = destCMapCM.getDataElement(
+								srcCMapCM.getComponents(srcCMap[i], null, 0),
+								0);
+					}
 				}
 
 				indexedBLPColorModel = new BLPIndexColorModel(destCMap,
