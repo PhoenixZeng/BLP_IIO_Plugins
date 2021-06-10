@@ -170,7 +170,8 @@ public class BLPReader extends ImageReader {
 
 		// read content header
 		if (streamMeta.getEncodingType() == BLPEncodingType.JPEG) {
-			mipmapProcessor = new JPEGMipmapProcessor(streamMeta.getAlphaBits());
+// 			mipmapProcessor = new JPEGMipmapProcessor(streamMeta.getAlphaBits());
+			mipmapProcessor = new JPEGMipmapProcessor(8);
 		} else if (streamMeta.getEncodingType() == BLPEncodingType.INDEXED) {
 			mipmapProcessor = new IndexedMipmapProcessor(
 					streamMeta.getAlphaBits());
