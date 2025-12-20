@@ -2,8 +2,6 @@ package com.hiveworkshop.blizzard.blp;
 
 import cn.hutool.core.img.Img;
 import cn.hutool.core.io.FileUtil;
-import net.moonlightflower.wc3libs.misc.UnsupportedFormatException;
-import net.moonlightflower.wc3libs.misc.image.BLP;
 import org.junit.Test;
 
 import javax.imageio.IIOImage;
@@ -14,7 +12,6 @@ import javax.imageio.spi.ImageReaderSpi;
 import javax.imageio.stream.ImageOutputStream;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.awt.image.Raster;
 import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
@@ -24,7 +21,7 @@ import java.util.ServiceLoader;
  * @author : Phoenix (火凌之)
  * @date : 2024/12/07 18:10
  */
-public class test1
+public class Test1
 {
 //	@Before
 	public void d()
@@ -176,62 +173,6 @@ public class test1
 	}
 	
 	
-	
-	@Test
-	public void aa2()
-	{
-		String path1 = "C:\\Users\\Phoenix\\Desktop\\新建文件夹 (6)\\az_crack12.blp";
-		String path2 = "C:\\Users\\Phoenix\\Desktop\\新建文件夹 (6)\\112.png";
-		String ext = path2.substring(path2.length() - 3);
-		File blpFile = new File(path1);
-		File newFile = new File(path2);
-		
-		try
-		{
-			BLP blp = new BLP(blpFile);
-			BufferedImage img = blp.getBufImg();
-//			BufferedImage img = ImageIO.read(blpFile);
-			
-			if (!newFile.exists())
-			{
-				FileUtil.touch(newFile);
-			}
-			BufferedImage bufferedImage = img;
-//			BufferedImage bufferedImage = new BufferedImage(img.getWidth(null),
-//			                                                img.getHeight(null),
-//			                                                BufferedImage.TYPE_INT_ARGB);
-			
-			Graphics2D g = bufferedImage.createGraphics();
-			bufferedImage = g.getDeviceConfiguration()
-			                 .createCompatibleImage(img.getWidth(null),
-			                                        img.getHeight(null),
-			                                        Transparency.TRANSLUCENT);
-			g.dispose();
-			g = bufferedImage.createGraphics();
-			g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);
-			g.setRenderingHint(RenderingHints.KEY_INTERPOLATION,RenderingHints.VALUE_INTERPOLATION_BICUBIC);
-//			g.setComposite(AlphaComposite.getInstance(AlphaComposite.CLEAR, 0.0f));
-//			g.fillRect(0, 0, img.getWidth(), img.getHeight());
-//			g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
-//			bufferedImage = g.getDeviceConfiguration()
-//			                 .createCompatibleImage(img.getWidth(null),
-//			                                        img.getHeight(null),
-//			                                        Transparency.TRANSLUCENT);
-			g.drawImage(img,0,0,null);
-			g.dispose();
-			img = bufferedImage;
-			if (ext.equalsIgnoreCase("blp")){
-				ImageIO.write(img, ext, newFile);
-			}
-			else{
-				Img.from(img).write(newFile);
-			}
-//			ImageIO.write(img, ext, newFile);
-		} catch (Exception e)
-		{
-			throw new RuntimeException(e);
-		}
-	}
 	
 	public static int getStdSize(int i)
 	{
