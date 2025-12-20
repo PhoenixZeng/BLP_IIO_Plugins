@@ -100,7 +100,7 @@ class JPEGMipmapProcessor extends MipmapProcessor {
 			throw new IllegalArgumentException("Unsupported alphaBits.");
 		final boolean hasAlpha = alphaBits == 8;
 		jpegBLPColorModel = new ComponentColorModel(
-				ColorSpace.getInstance(ColorSpace.CS_LINEAR_RGB), hasAlpha,
+				ColorSpace.getInstance(ColorSpace.CS_sRGB), hasAlpha,
 				false, hasAlpha ? Transparency.TRANSLUCENT
 						: Transparency.OPAQUE, DataBuffer.TYPE_BYTE);
 	}
